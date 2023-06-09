@@ -1,9 +1,16 @@
 [
     {
-        "name": "kask",
-        "last-name": "asas",
-        "acc-number": "LT70440751824917009833",
+        "name": "asdasd",
+        "last-name": "asdasd",
+        "acc-number": "LT70440392855688200598",
         "person-id": "39410130968",
-        "balance": 14
+        "balance": 0
+    },
+    {
+        "name": "asdsad",
+        "last-name": "asdasds",
+        "acc-number": "LT70440457551544572264",
+        "person-id": "36504300438",
+        "balance": 123111
     }
 ]

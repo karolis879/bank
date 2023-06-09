@@ -12010,7 +12010,7 @@ header {
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 
 #customers td,
@@ -12108,4 +12108,11 @@ form {
 .remove-bin button {
   margin-top: 30px;
   background-color: crimson;
+}
+
+.bin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

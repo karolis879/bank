@@ -1,12 +1,13 @@
 <?php
 
 // Function to display a message and set it to disappear after a specified duration
-function displayMessage($message, $durationSeconds = 5)
+function displayMessage($message, $durationSeconds = 5, $isError = false)
 {
-    echo '<div class="message">' . $message . '</div>';
+    $messageClass = $isError ? 'error-message' : 'success-message';
+    echo '<div class="' . $messageClass . '">' . $message . '</div>';
     echo '<script>
         setTimeout(function() {
-            var messageElement = document.querySelector(".message");
+            var messageElement = document.querySelector(".' . $messageClass . '");
             if (messageElement && messageElement.textContent === "' . $message . '") {
                 messageElement.style.display = "none";
             }
@@ -34,10 +35,10 @@ if (isset($_POST['delete'])) {
             file_put_contents('data.json', json_encode(array_values($data), JSON_PRETTY_PRINT));
 
             // Display a success message for 5 seconds
-            displayMessage('Account deleted successfully!', 5);
+            displayMessage('Account deleted successfully!', 5, false);
         } else {
             // Account has funds, display an error message for 10 seconds
-            displayMessage('Cannot delete account. Funds exist in the account.', 10);
+            displayMessage('Cannot delete account. Funds exist in the account.', 10, true);
         }
     }
 }
@@ -98,22 +99,32 @@ $tableHtml .= '</table>';
     <link rel="stylesheet" href="app.css">
     <script src="app.js"></script>
     <title>Bank</title>
-  
+
+    <style>
+        .success-message {
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
-  <?php require __DIR__.'/menu.php'?>
-    <h1>Sąskaitos</h1>
+    <?php require __DIR__ . '/menu.php' ?>
+    <div class="bin">
+        <h1>Sąskaitos</h1>
 
-    <?php if (isset($_GET['message']) && $_GET['message'] === 'success') : ?>
-        <?php echo 'Pavyko!!' ?>
-    <?php endif; ?>
-    <?php if (isset($_GET['message']) && $_GET['message'] === 'success2') : ?>
-        <?php displayMessage('Funds removed successfully!', 3); ?>
-    <?php endif; ?>
+        <?php if (isset($_GET['message']) && $_GET['message'] === 'success') : ?>
+            <?php echo 'Pavyko!!' ?>
+        <?php endif; ?>
+        <?php if (isset($_GET['message']) && $_GET['message'] === 'success2') : ?>
+            <?php displayMessage('Funds removed successfully!', 3, false); ?>
+        <?php endif; ?>
 
-    <?php echo $tableHtml; ?>
-
+        <?php echo $tableHtml; ?>
+    </div>
 </body>
 
 </html>
